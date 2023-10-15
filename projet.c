@@ -147,7 +147,8 @@ void ajouterVoit(voiture stockVoit[], int *PnbVoit){
     printf("stockage est plein \n");
   }
   
-  else{printf("donner reference de la voiture \n");
+  else{
+  printf("donner reference de la voiture \n");
   scanf("%d",&stockVoit[*PnbVoit].ref);
   printf("donner le type du moteur de la voiture\n");
   scanf("%s",&stockVoit[*PnbVoit].typeMoteur);
