@@ -38,7 +38,7 @@ int main(){
   voiture stockVoit[50];
   printf("la capacité maximale de votre stockage de voiture est de 50 \n");
   do
-  {
+  {                                              /*affichage du menu principale*/
     printf("##### Menu Principal ##### \n");
     printf("1.ajouter un produit \n");
     printf("2.supprimer un produit \n");
@@ -46,7 +46,7 @@ int main(){
     printf("pour arrêter le programme tapez 0 \n");
 
     do
-  {
+  {                                             /*saisir le choix*/
     printf("donner votre choix :");
     scanf("%d \n",&choix);
     if (choix<1 || choix>4)
@@ -57,51 +57,51 @@ int main(){
     
     switch (choix)
     {
-    case 1:
+    case 1:                                          /* chois ajouter*/
       printf("1.ajouter une voiture \n");
       printf("2.ajouter un ordinateur \n");
       scanf("donner votre choix %d \n",&choixAjouter);
       switch (choixAjouter)
       {
-      case 1:
+      case 1:                                      /*ajouter une voiture*/
         ajouterVoit(stockVoit,PnbVoit);
         break;
-      case 2:
+      case 2:                                     /*ajouter un ordinateur*/
          ajouterOrd(stockOrd,PnbOrd);      
-      break;
-      
+         break;
       default:
-      printf("choix invalide \n");
+        printf("choix invalide \n");
         break;
       }
       break;
-      case 2:
+      case 2:                                            /*choix de supprimer*/
          printf("1.supprimer une voiture \n");
-      printf("2.supprimer un ordinateur \n");
-      scanf("donner votre choix %d \n",&choixSupprimer);
+         printf("2.supprimer un ordinateur \n");
+         scanf("donner votre choix %d \n",&choixSupprimer);
        switch (choixSupprimer)
        {
-       case 1:
+       case 1:                                        /*supprimer une voiture*/
         supprimerVoit(stockVoit,nbVoit,PnbVoit);
         break;
-        case 2:
+       case 2:                                       /*supprimer un ordinateur*/
         supprimerOrd(stockOrd,nbOrd,PnbOrd);
-       
+        break;
        default:
-       printf("choix invalide \n");
+        printf("choix invalide \n");
         break;
        }
-      case 3:
-      printf("1.afficher une voiture \n");
-      printf("2.afficher un ordinateur \n");
-      scanf("donner votre choix %d \n",&choixAfficher);
+       break;
+      case 3:                                     /*choix d'affichage*/
+       printf("1.afficher une voiture \n");
+       printf("2.afficher un ordinateur \n");
+       scanf("donner votre choix %d \n",&choixAfficher);
        switch (choixAfficher)
        {
-       case 1:
+       case 1:                                   /*afficher une voiture*/
         scanf("%d",&choixRefProduit);
         afficherVoit(stockVoit,choixRefProduit,PnbVoit);
         break;
-        case 2:
+       case 2:                                   /*afficher un ordinateur*/
         afficherOrd(stockOrd,choixRefProduit,PnbOrd);
        
        default:
