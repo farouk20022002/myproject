@@ -19,8 +19,6 @@ typedef struct
 }voiture;
 void ajouterOrd(ordinateur[], int * );
 void ajouterVoit(voiture[], int *);
-void supprimerVoit(voiture[],int,int * );
-void supprimerOrd(ordinateur[],int,int * );
 void afficherVoit(voiture[],int,int *);
 void afficherOrd(ordinateur[],int, int *);
 
@@ -125,6 +123,11 @@ int main(){
 
 
 void ajouterOrd(ordinateur stockOrd[], int *PnbOrd ){
+  if (*PnbOrd==50)
+  {
+    printf("stock est plein  \n");
+  }
+  else{
   printf("donner reference de l'ordinateur \n");
   scanf("%d",&stockOrd[*PnbOrd].ref);
   printf("donner taille memoire de l'ordinateur \n");
@@ -136,9 +139,15 @@ void ajouterOrd(ordinateur stockOrd[], int *PnbOrd ){
   printf("donner systeme d'exploitation de l'ordinateur \n");
   scanf("%s",&stockOrd[*PnbOrd].sysExp);
   *PnbOrd=*PnbOrd+1;
+  }
 }
 void ajouterVoit(voiture stockVoit[], int *PnbVoit){
-   printf("donner reference de la voiture \n");
+  if (*PnbVoit==50)
+  {
+    printf("stockage est plein \n");
+  }
+  
+  else{printf("donner reference de la voiture \n");
   scanf("%d",&stockVoit[*PnbVoit].ref);
   printf("donner le type du moteur de la voiture\n");
   scanf("%s",&stockVoit[*PnbVoit].typeMoteur);
@@ -149,6 +158,7 @@ void ajouterVoit(voiture stockVoit[], int *PnbVoit){
   printf("donner la marque de la voiture \n");
   scanf("%s",&stockVoit[*PnbVoit].marque);
   *PnbVoit = *PnbVoit + 1;
+  }
 }
 void afficherVoit(voiture stockVoit[],int reff , int *PnbVoit){
   int test=0;
