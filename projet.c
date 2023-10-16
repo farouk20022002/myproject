@@ -21,6 +21,8 @@ void ajouterOrd(ordinateur[], int *);
 void ajouterVoit(voiture[], int *);
 void afficherVoit(voiture[], int, int);
 void afficherOrd(ordinateur[], int, int);
+void supprimerVoit(voiture[], int *, int);
+void supprimerOrd(ordinateur[], int *, int);
 
 int main(){
     int choixRefProduit;
