@@ -63,18 +63,29 @@ int main(){
                         break;
                 }
                 break;
+               
+                case 2: /* Choice to delete */
+                    printf("1. Supprimer une voiture\n");
+                    printf("2. Supprimer un ordinateur\n");
+                    int choixSupprimer;
+                   scanf("%d", &choixSupprimer);
 
-            case 2: /* Choice to delete - You need to implement this function */
-                printf("1. Supprimer une voiture\n");
-                printf("2. Supprimer un ordinateur\n");
-                int choixSupprimer;
-                scanf("%d", &choixSupprimer);
-
-                switch (choixSupprimer) {
-                    // Implement the deletion logic
-                }
-                break;
-
+                    switch (choixSupprimer) {
+                       case 1:
+                         printf("Donnez la référence de la voiture à supprimer: ");
+                         scanf("%d", &choixRefProduit);
+                         supprimerVoit(stockVoit, &nbVoit, choixRefProduit);
+                         break;
+                      case 2:
+                         printf("Donnez la référence de l'ordinateur à supprimer: ");
+                         scanf("%d", &choixRefProduit);
+                         supprimerOrd(stockOrd, &nbOrd, choixRefProduit);
+                        break;
+                      default:
+                         printf("Choix invalide\n");
+                        break;
+                  }    
+             break;
             case 3: /* Choice to display */
                 printf("1. Afficher une voiture\n");
                 printf("2. Afficher un ordinateur\n");
@@ -95,11 +106,7 @@ int main(){
                         break;
                 }
                 break;
-
-            case 0: /* Exit the program */
-                break;
-
-            default:
+                default:
                 printf("Choix invalide\n");
                 break;
         }
@@ -109,7 +116,7 @@ int main(){
 }
 
 void ajouterOrd(ordinateur stockOrd[], int *PnbOrd) {
-    if (*PnbOrd == 50) {
+    if (*PnbOrd == 50 ) {
         printf("Stock est plein\n");
     } else {
         printf("Donnez la référence de l'ordinateur: ");
@@ -181,5 +188,48 @@ void afficherOrd(ordinateur stockOrd[], int reff, int PnbOrd) {
 
     if (test == 0) {
         printf("La référence n'existe pas\n");
+    }
+}
+void supprimerVoit(voiture stockVoit[], int *PnbVoit, int reff) {
+    int i;
+    int found = 0;
+    
+    for (i = 0; i < *PnbVoit; i++) {
+        if (stockVoit[i].ref == reff) {
+            // Supprimer la voiture en décalant les éléments suivants
+            for (int j = i; j < (*PnbVoit - 1); j++) {
+                stockVoit[j] = stockVoit[j + 1];
+            }
+            (*PnbVoit)--;
+            found = 1;
+            printf("Voiture avec référence %d supprimée avec succès.\n", reff);
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("La référence n'existe pas dans le stock de voitures.\n");
+    }
+}
+
+void supprimerOrd(ordinateur stockOrd[], int *PnbOrd, int reff) {
+    int i;
+    int found = 0;
+    
+    for (i = 0; i < *PnbOrd; i++) {
+        if (stockOrd[i].ref == reff) {
+            // Supprimer l'ordinateur en décalant les éléments suivants
+            for (int j = i; j < (*PnbOrd - 1); j++) {
+                stockOrd[j] = stockOrd[j + 1];
+            }
+            (*PnbOrd)--;
+            found = 1;
+            printf("Ordinateur avec référence %d supprimé avec succès.\n", reff);
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("La référence n'existe pas dans le stock d'ordinateurs.\n");
     }
 }
