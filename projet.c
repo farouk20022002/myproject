@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct {
     int ref;
@@ -33,7 +34,8 @@ int main(){
     printf("La capacité maximale de votre stockage d'ordinateur est de 50\n");
     voiture stockVoit[50];
     printf("La capacité maximale de votre stockage de voiture est de 50\n");
-
+   
+    
     do {
         /* Display the main menu */
         printf("##### Menu Principal #####\n");
@@ -113,11 +115,12 @@ int main(){
                 break;
         }
     } while (choix != 0);
-
     return 0;
 }
 
 void ajouterOrd(ordinateur stockOrd[], int *PnbOrd) {
+    FILE *o;
+    o=fopen("fichier_de_sauvgarde_ordinateur.txt","a");
     if (*PnbOrd == 50 ) {
         printf("Stock est plein\n");
     } else {
@@ -133,9 +136,13 @@ void ajouterOrd(ordinateur stockOrd[], int *PnbOrd) {
         scanf("%19s", stockOrd[*PnbOrd].sysExp);
         (*PnbOrd)++;
     }
+    fprintf(o,"la reference: %d , la marque: %s , le systeme d'exploitation: %s , la memoire: %d , le stockage: %d \n",stockOrd[*PnbOrd].ref,stockOrd[*PnbOrd].marque, stockOrd[*PnbOrd].sysExp,stockOrd[*PnbOrd].tailleMemoir,stockOrd[*PnbOrd].tailleDisque);
+    fclose(o);
 }
 
 void ajouterVoit(voiture stockVoit[], int *PnbVoit) {
+    FILE *v;
+    v=fopen("fichier_de_sauvgarde_voiture.txt","a");
     if (*PnbVoit == 50) {
         printf("Stock est plein\n");
     } else {
@@ -151,6 +158,8 @@ void ajouterVoit(voiture stockVoit[], int *PnbVoit) {
         scanf("%19s", stockVoit[*PnbVoit].marque);
         (*PnbVoit)++;
     }
+    fprintf(v,"reference: %d, type moteur: %s, vitesse max: %d, prix: %d, la marque: %s \n",stockVoit[*PnbVoit].ref,stockVoit[*PnbVoit].typeMoteur,stockVoit[*PnbVoit].vitesseMax,stockVoit[*PnbVoit].prix,stockVoit[*PnbVoit].marque);
+    fclose(v);
 }
 
 void afficherVoit(voiture stockVoit[], int reff, int PnbVoit) {
@@ -161,10 +170,27 @@ void afficherVoit(voiture stockVoit[], int reff, int PnbVoit) {
 
     for (int i = 0; i < PnbVoit; i++) {
         if (stockVoit[i].ref == reff) {
-            printf("La référence est : %d\nLa vitesse maximale est : %d\nLe prix est : %d\nLa marque est : %s\nLe type moteur est : %s\n",
+            printf("La référence est : %d\n La vitesse maximale est : %d\n Le prix est : %d\n La marque est : %s\n Le type moteur est : %s \n",
                 stockVoit[i].ref, stockVoit[i].vitesseMax, stockVoit[i].prix, stockVoit[i].marque, stockVoit[i].typeMoteur);
             test = 1;
             break;
+        }
+        else{
+            int ref,vit_max,prix;
+            char type_moteur[20],marque[20];
+            FILE *v;
+            v=fopen("fichier_de_sauvgarde_voiture.txt","r");
+            while (!feof(v))
+            {
+                fscanf(v,"%d%s%d%d%s",&ref,&vit_max,type_moteur,&prix,marque);
+                if(ref==reff){
+                    printf("reference: %d, moteur:%s ,%d%d%s",&ref,type_moteur,&vit_max,&prix,marque);
+                    fclose(v);
+                    test=1;
+                    break;
+                }
+            }
+            
         }
     }
 
@@ -186,6 +212,25 @@ void afficherOrd(ordinateur stockOrd[], int reff, int PnbOrd) {
             test = 1;
             break;
         }
+        else{
+            int memoir,stockage,ref;
+            char sysexp[20],qualite[20];
+          FILE *o;
+          o=fopen("fichier_de_sauvgarde_ordinateur.txt","r");
+          while (!feof(o))
+          {
+            fscanf("%d%s%s%d%d",&ref,qualite,sysexp,&memoir,&stockage);
+            if (ref==reff)
+            {
+                printf("reference:%d, qualite:%s, systeme d'exploitation:%s, memoire:%d, stockage:%d",ref,qualite,sysexp,memoir,stockage);
+                test=1;
+                fclose(o);
+                break;
+            }
+            
+          }
+          
+        }
     }
 
     if (test == 0) {
@@ -195,8 +240,12 @@ void afficherOrd(ordinateur stockOrd[], int reff, int PnbOrd) {
 void supprimerVoit(voiture stockVoit[], int *PnbVoit, int reff) {
     int i;
     int found = 0;
+    FILE *v;
+    v=fopen("fichier_de_sauvgarde_voiture.txt","a");
+    FILE *n;
+    n=fopen("temporaire.txt","w");
     
-    for (i = 0; i < *PnbVoit; i++) {
+    /*for (i = 0; i < *PnbVoit; i++) {
         if (stockVoit[i].ref == reff) {
             // Supprimer la voiture en décalant les éléments suivants
             for (int j = i; j < (*PnbVoit - 1); j++) {
@@ -207,7 +256,12 @@ void supprimerVoit(voiture stockVoit[], int *PnbVoit, int reff) {
             printf("Voiture avec référence %d supprimée avec succès.\n", reff);
             break;
         }
+    }*/
+    while (feof(v))
+    {
+        /* code */
     }
+    
 
     if (!found) {
         printf("La référence n'existe pas dans le stock de voitures.\n");
