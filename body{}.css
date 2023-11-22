@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Coiny');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #0f222f;
+    color: #fafafa;
+    font: normal normal 100%;
+    font-family: 'Coiny';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boucle {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.boucle:hover .glass {
+    transform: rotate(0deg);
+    margin: 0 20px;
+}
+
+.glass {
+    width: 200px;
+    height: 240px;
+    border: 1px solid rgba(221, 216, 216, 0.1);
+    background: linear-gradient(rgba(238, 229, 229, 0.133), transparent);
+    box-shadow: 0 25px 25px rgba(0, 0, 0, 1);
+    border-radius: 10px;
+    margin: 0 -45px;
+    transform: rotate(calc(var(--r) * 1deg));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: 0.5s;
+    backdrop-filter: blur(10px);
+}
+
+.glass::before {
+    content: attr(data-text);
+    position: absolute;
+    bottom: 0; /* Adjust this value to position the text as needed */
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    color: #fafafa;
+    font-size: 1rem; /* Adjust the font size as needed */
+    background-color: rgba(255, 255,  255 , 0.05)
+}
+
+.glass i {
+    font-size: 4rem;
+}
