@@ -1,37 +1,26 @@
-const touches = [...document.querySelectorAll('.bouton')];
-const listeKeycode = touches.map(touche => touche.dataset.key);
-const ecran = document.querySelector('.ecran');
+let display = document.getElementById('display');
+let expression = '';
 
-document.addEventListener('keydown', (e) => {
-    const valeur = e.keyCode.toString();
-    calculer(valeur)
-
-})
-
-document.addEventListener('click', (e) => {
-    const valeur = e.target.dataset.key;
-    calculer(valeur)
-
-})
-
-const calculer = (valeur) => {
-    if (listeKeycode.includes(valeur)) {
-        switch (valeur) {
-            case '8':
-                ecran.textContent = "";
-                break;
-            case '13':
-                const calcul = eval(ecran.textContent);
-                ecran.textContent = calcul;
-                break;
-            default:
-                const indexKeycode = listeKeycode.indexOf(valeur);
-                const touche = touches[indexKeycode];
-                ecran.textContent += touche.innerHTML;
-        }
-    }
+function appendValue(value) {
+    expression += value;
+    display.value = expression;
 }
 
-window.addEventListener('error', (e) => {
-    alert('Une erreur est survenue dans votre calcul : ' + e.message)
-})
+function clearDisplay() {
+    expression = '';
+    display.value = '';
+}
+
+function deleteLastCharacter() {
+    expression = expression.slice(0, -1);
+    display.value = expression;
+}
+
+function calculateResult() {
+    try {
+        expression = eval(expression);
+        display.value = expression;
+    } catch (error) {
+        display.value = 'Error';
+    }
+}
