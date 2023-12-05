@@ -24,7 +24,8 @@ void afficherVoit(int );
 void afficherOrd(int);
 void supprimerVoit(int);
 void supprimerOrd(int);
-
+void afficherVoitPrix(int);
+void afficherOrdMemoire(int);
 int main(){
     int choixRefProduit;
     int nbVoit = 0;
@@ -93,6 +94,8 @@ int main(){
             case 3: /* Choice to display */
                 printf("1. Afficher une voiture\n");
                 printf("2. Afficher un ordinateur\n");
+                printf("3. afficher les voitures dont le prix est inferieur a x\n");
+                printf("4. afficher les ordinateurs dont la taille memoire est inferieur a x\n");
                 int choixAfficher;
                 scanf("%d", &choixAfficher);
 
@@ -107,6 +110,18 @@ int main(){
                         scanf("%d", &choixRefProduit);
                         afficherOrd( choixRefProduit);
                         break;
+                    case 3:
+                        int prixMax;
+                        printf("donner le prix maximal \n");
+                        scanf("%d",&prixMax);
+                        afficherVoitPrix(prixMax);
+                    break;
+                    case 4:
+                      int memMax;
+                      printf("donner la taille de memoire maximale");
+                      scanf("%d",&memMax);
+                      afficherOrdMemoire(memMax);
+                     break;
                     default:
                         printf("Choix invalide\n");
                         break;
@@ -302,4 +317,59 @@ void supprimerOrd(int reff) {
    
     
    
+}
+
+void afficherVoitPrix(int prixRef){
+int test = 0;
+    FILE *v;
+    v = fopen("fichier_de_sauvgarde_voiture.txt", "r");
+
+    if (v == NULL) {
+        printf("Erreur lors de l'ouverture du fichier de sauvegarde des voitures.\n");
+        return;
+    }
+
+    int ref, vit_max, prix;
+    char type_moteur[20], marque[20];
+
+    while (fscanf(v, "%d %s %d %d %s", &ref, type_moteur, &vit_max, &prix, marque) == 5) {
+        if (prix <= prixRef) {
+            printf("Référence : %d\nType moteur : %s\nVitesse maximale : %d\nPrix : %d\nMarque : %s\n", ref, type_moteur, vit_max, prix, marque);
+            test = 1;
+        }
+    }
+
+    fclose(v);
+
+    if (test == 0) {
+        printf("La référence n'existe pas dans le stock de voitures.\n");
+    }
+}
+
+void afficherOrdMemoire(int memMax){
+    int test = 0;
+    FILE *o;
+    o = fopen("fichier_de_sauvgarde_ordinateur.txt", "r");
+
+    if (o == NULL) {
+        printf("Erreur lors de l'ouverture du fichier de sauvegarde des ordinateurs.\n");
+        return;
+    }
+
+    int ref, taille_mem, taille_disk;
+    char sys_exp[20], marque[20];
+
+    while (fscanf(o, "%d %s %s %d %d", &ref, marque, sys_exp, &taille_mem, &taille_disk) == 5) {
+        if (taille_mem <= memMax) {
+            printf("Référence : %d\nMarque : %s\nSystème d'exploitation : %s\nTaille mémoire : %d\nTaille disque : %d\n", ref, marque, sys_exp, taille_mem, taille_disk);
+            test = 1;
+           
+        }
+    }
+
+    fclose(o);
+
+    if (test == 0) {
+        printf("La référence n'existe pas dans le stock d'ordinateurs.\n");
+    }
 }
