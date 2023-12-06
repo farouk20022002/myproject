@@ -45,6 +45,7 @@ body {
     position: relative;
     transition: 0.5s;
     backdrop-filter: blur(10px);
+    
 }
 
 .glass::before {
@@ -56,9 +57,13 @@ body {
     font-weight: 600;
     color: #fafafa;
     font-size: 1rem; /* Adjust the font size as needed */
-    background-color: rgba(255, 255,  255 , 0.05)
+    background-color: rgba(9, 1, 1, 0.05)
 }
 
 .glass i {
     font-size: 4rem;
+}
+
+div[data-text] {
+    color: red; 
 }
