@@ -3,18 +3,27 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing:border-box;
+    
 }
 
+
 body {
-    height: 100vh;
-    background-color: #0f222f;
+    height: 10vh;
+    background: url(planet-581239_1280.jpg) no-repeat;
     color: #fafafa;
     font: normal normal 100%;
     font-family: 'Coiny';
     display: flex;
     justify-content: center;
     align-items: center;
+   
+    
+    flex-direction: column ;
+    margin: 400px;;
+    padding-bottom: 10px;
+    overflow: hidden;
+    
 }
 
 .boucle {
@@ -23,6 +32,7 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    
 }
 
 .boucle:hover .glass {
@@ -55,15 +65,197 @@ body {
     width: 100%;
     text-align: center;
     font-weight: 600;
-    color: #fafafa;
+    color: #e7e1e1;
     font-size: 1rem; /* Adjust the font size as needed */
-    background-color: rgba(9, 1, 1, 0.05)
+    background-color: rgba(151, 140, 140, 0.05)
 }
 
 .glass i {
     font-size: 4rem;
 }
 
-div[data-text] {
-    color: red; 
+header{
+position: fixed;
+top: 0;
+left: 0;
+width:100% ;
+padding: 20px 100px;
+
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 99;}
+
+
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #f4f4f8;
+    text-decoration :none;
+  margin-left: 50px;
+
+} 
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 100% ;
+    height: 3px ;
+    background:#faf7f7 ;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition:transform .5s  ;
+}
+.navigation a:hover::after {
+    transform: scaleX(1);
+}
+.navigation .btnlogin {
+    width: 100px ;
+    height:50px ;
+    margin-left: 20px;
+    background: transparent ;
+    border: 2px solid #fff;
+    outline: none ;
+     border-radius:6px ;
+color: #e7e1e1;
+    cursor:pointer ;
+    font-size : 1.1em;
+}
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background:  transparent ;
+    border: 2px solid rgb(244, 242, 246);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    
+    box-shadow: 0 0 30px black;
+    display: flex;
+    justify-content:center ;
+}
+.wrapper .form-box{
+    width: 100%;
+    padding:40px ;
+
+}.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: black;
+    font-size: 2em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 2px solid #162938;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+
+.form-box h2 {
+    font-size: 2em;
+    color: rgb(19, 18, 18);
+    text-align: center;
+
+}
+.input-box{
+    position: relative;
+    width:100% ;
+    height: 50px;
+    border-bottom:  2px solid grey;
+margin: 20px;
+}
+
+
+.input-box input:focus + label,
+.input-box input:valid +  label {
+    top: 30%;
+    font-size: 0.8em;
+    color: gray;
+    transform: translateY(-50%);
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: black;
+    font-weight: 500;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.input-box input {
+    width: 100%;
+    height:100% ;
+    background:transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: rgb(176, 171, 171);
+    font-weight: 600;
+    padding:  0 35px 0 5px;
+}
+.input-box span{
+    position:absolute;
+    right :8px;
+    font-size: 1.2em;
+    color: black;
+    line-height: 57px;
+
+}
+.remember-forgot {
+    font-size: .9em;
+    color: #162938;
+    font-weight: 500px; 
+    margin :-15px 0 15px ;
+    display:flex;
+    justify-content: space-between ; 
+
+}
+.remember-forgot label input {
+    accent-color: black;
+    margin-right: 3px;
+    text-decoration: none;
+}
+.remember-forgot a:hover {
+    
+    text-decoration:underline  ;
+}
+.btn{
+    width :100%;
+    height: 45px;
+    background: black;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size:  1em;
+    color: white;
+    font-weight:  500;
+
+}
+.login-register{
+    font-size:.9em;
+    color: black;
+    text-align: center;
+    font-weight: 500;
+    margin:  25px 0 10px;
+}
+login-register p a {
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+}
+.login-register p a:hover{
+    text-decoration: underline;
 }
